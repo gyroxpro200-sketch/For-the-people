@@ -9,7 +9,7 @@
 header{padding:18px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1d2230;position:sticky;top:0;background:#090b10ee;backdrop-filter:blur(10px);z-index:5}
 .logo{font-size:21px;font-weight:800}.logo span{color:#6ea8ff}
 nav a{color:#aeb7c8;text-decoration:none;margin-left:18px;font-size:14px}
-.hero{padding:55px 20px 35px;text-align:center;max-width:900px;margin:auto}
+.hero{padding:60px 20px 38px;text-align:center;max-width:900px;margin:auto}
 .hero h1{font-size:42px;margin:10px 0}.hero p{color:#9ca6b8;font-size:16px}
 .search{margin:25px auto 0;max-width:600px;display:flex;background:#111620;border:1px solid #293142;border-radius:14px;padding:6px}
 .search input{flex:1;background:none;border:0;outline:0;color:white;padding:13px;font-size:15px}
@@ -18,7 +18,7 @@ nav a{color:#aeb7c8;text-decoration:none;margin-left:18px;font-size:14px}
 h2{margin-top:30px}.categories{display:flex;gap:10px;overflow:auto;padding:8px 0 18px}
 .cat{white-space:nowrap;background:#111620;border:1px solid #242c3b;color:#cbd3e1;padding:10px 14px;border-radius:12px;cursor:pointer}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:15px}
-.card{background:#111620;border:1px solid #222b3a;border-radius:17px;padding:18px;transition:.2s}
+.card{background:linear-gradient(145deg,#111620,#0d1017);border:1px solid #222b3a;border-radius:17px;padding:18px;transition:.2s}
 .card:hover{transform:translateY(-3px);border-color:#3d4c67}
 .icon{width:55px;height:55px;border-radius:14px;display:grid;place-items:center;background:#1b2433;font-size:27px;margin-bottom:14px}
 .card h3{margin:5px 0}.card p{color:#8f9bad;font-size:13px;line-height:1.5;min-height:40px}
@@ -41,17 +41,24 @@ footer{text-align:center;color:#697386;border-top:1px solid #1d2230;padding:25px
 <div class="categories">
 <button class="cat" onclick="showCategory('all')">All</button>
 <button class="cat" onclick="showCategory('editing')">🎬 Editing</button>
-<button class="cat" onclick="showCategory('music')">🎵 Music</button>
+<button class="cat" onclick="showCategory('social')">📸 Social</button>
+<button class="cat" onclick="showCategory('entertainment')">📺 Entertainment</button>
+<button class="cat" onclick="showCategory('games')">🎮 Games</button>
 <button class="cat" onclick="showCategory('education')">📚 Education</button>
-<button class="cat" onclick="showCategory('tools')">🛠️ Tools</button>
 </div>
 
 <h2 id="apps">Popular Apps</h2>
 <div class="grid" id="grid">
-<article class="card" data-category="editing" data-name="CapCut"><div class="icon">✂️</div><h3>CapCut</h3><p>Video editing tools, effects and templates.</p><div class="meta">Editing • Android</div><a class="download" href="https://play.google.com/" target="_blank">Official Download</a></article>
-<article class="card" data-category="music" data-name="Spotify"><div class="icon">🎵</div><h3>Spotify</h3><p>Listen to music, podcasts and more.</p><div class="meta">Music • Android</div><a class="download" href="https://play.google.com/" target="_blank">Official Download</a></article>
-<article class="card" data-category="education" data-name="Khan Academy"><div class="icon">📚</div><h3>Khan Academy</h3><p>Learn useful subjects with free educational lessons.</p><div class="meta">Education • Android</div><a class="download" href="https://play.google.com/" target="_blank">Official Download</a></article>
-<article class="card" data-category="tools" data-name="Google Drive"><div class="icon">☁️</div><h3>Google Drive</h3><p>Store, organize and access your files.</p><div class="meta">Tools • Android</div><a class="download" href="https://play.google.com/" target="_blank">Official Download</a></article>
+<article class="card" data-category="editing" data-name="CapCut"><div class="icon">✂️</div><h3>CapCut</h3><p>Popular video editor with powerful editing tools and templates.</p><div class="meta">Editing • Android</div><a class="download" href="https://play.google.com/store/apps/details?id=com.lemon.lvoverseas" target="_blank" rel="noopener">Official Download</a></article>
+<article class="card" data-category="social" data-name="Instagram"><div class="icon">📸</div><h3>Instagram</h3><p>Share photos, videos, stories and connect with people.</p><div class="meta">Social • Android</div><a class="download" href="https://play.google.com/store/apps/details?id=com.instagram.android" target="_blank" rel="noopener">Official Download</a></article>
+<article class="card" data-category="editing" data-name="VN Video Editor"><div class="icon">🎬</div><h3>VN Video Editor</h3><p>Multi-track video editing with creative tools and effects.</p><div class="meta">Editing • Android</div><a class="download" href="https://play.google.com/store/apps/details?id=com.frontrow.vlog" target="_blank" rel="noopener">Official Download</a></article>
+<article class="card" data-category="entertainment" data-name="Netflix"><div class="icon">🎞️</div><h3>Netflix</h3><p>Stream movies, series and entertainment from the official app.</p><div class="meta">Entertainment • Android</div><a class="download" href="https://play.google.com/store/apps/details?id=com.netflix.mediaclient" target="_blank" rel="noopener">Official Download</a></article>
+<article class="card" data-category="games" data-name="BGMI"><div class="icon">🎮</div><h3>BGMI</h3><p>Battle royale gaming experience from the official developer.</p><div class="meta">Games • Android</div><a class="download" href="https://play.google.com/store/apps/details?id=com.pubg.imobile" target="_blank" rel="noopener">Official Download</a></article>
+<article class="card" data-category="entertainment" data-name="JioHotstar"><div class="icon">📺</div><h3>JioHotstar</h3><p>Watch shows, movies, sports and other entertainment.</p><div class="meta">Entertainment • Android</div><a class="download" href="https://play.google.com/store/" target="_blank" rel="noopener">Official Download</a></article>
+<article class="card" data-category="editing" data-name="InShot"><div class="icon">✂️</div><h3>InShot</h3><p>Easy video and photo editor for creators.</p><div class="meta">Editing • Android</div><a class="download" href="https://play.google.com/store/apps/details?id=com.camerasideas.instashot" target="_blank" rel="noopener">Official Download</a></article>
+<article class="card" data-category="education" data-name="Sarkari Result"><div class="icon">📚</div><h3>Sarkari Result</h3><p>Find government job, exam and result information.</p><div class="meta">Jobs • Website</div><a class="download" href="https://www.sarkariresult.com/" target="_blank" rel="noopener">Visit Official Site</a></article>
+<article class="card" data-category="education" data-name="Rojgar With Ankit"><div class="icon">🎓</div><h3>Rojgar With Ankit</h3><p>Education and government-job preparation resources.</p><div class="meta">Education • Website</div><a class="download" href="https://www.rojgarwithankit.com/" target="_blank" rel="noopener">Visit Official Site</a></article>
+<article class="card" data-category="video" data-name="YouTube"><div class="icon">▶️</div><h3>YouTube</h3><p>Watch, create and share videos with the YouTube app.</p><div class="meta">Video • Android</div><a class="download" href="https://play.google.com/store/apps/details?id=com.google.android.youtube" target="_blank" rel="noopener">Official Download</a></article>
 </div>
 </main>
 <footer>© 2026 For The People • Useful apps & resources</footer>
