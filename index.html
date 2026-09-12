@@ -1,99 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="For The People - useful apps, websites and student resources in one place.">
-<title>For The People — Useful Apps & Websites</title>
-<style>
-*{box-sizing:border-box}body{margin:0;background:#07090d;color:#f4f7fb;font-family:Arial,Helvetica,sans-serif}
-a{text-decoration:none;color:inherit}.wrap{max-width:1100px;margin:auto;padding:0 18px}
-header{position:sticky;top:0;z-index:20;background:rgba(7,9,13,.92);backdrop-filter:blur(14px);border-bottom:1px solid #1c222d}
-.nav{height:68px;display:flex;align-items:center;justify-content:space-between}.brand{font-size:21px;font-weight:800;letter-spacing:.3px}.brand span{color:#7c5cff}
-.navlinks{display:flex;gap:18px;font-size:14px;color:#aeb7c6}.navlinks a:hover{color:#fff}
-.hero{padding:55px 0 30px;text-align:center}.tag{display:inline-block;border:1px solid #2a3040;border-radius:999px;padding:7px 12px;color:#aeb7c6;font-size:12px;background:#0c1017}
-h1{font-size:clamp(34px,7vw,62px);line-height:1.02;margin:18px 0 12px}.grad{background:linear-gradient(90deg,#fff,#a78bfa);-webkit-background-clip:text;color:transparent}
-.hero p{max-width:650px;margin:0 auto 25px;color:#9ca7b8;line-height:1.6}
-.search{max-width:650px;margin:auto;display:flex;background:#0d121a;border:1px solid #252d3a;border-radius:15px;padding:7px}
-.search input{flex:1;background:transparent;border:0;outline:0;color:#fff;padding:12px;font-size:15px}.search button{border:0;border-radius:11px;background:#7c5cff;color:#fff;padding:0 20px;font-weight:700}
-.categories{display:flex;gap:8px;overflow:auto;padding:12px 0 24px}.cat{white-space:nowrap;border:1px solid #252d3a;background:#0d121a;color:#aeb7c6;padding:9px 13px;border-radius:999px;cursor:pointer}.cat.active,.cat:hover{background:#171329;border-color:#7c5cff;color:#fff}
-.section-title{display:flex;justify-content:space-between;align-items:center;margin:18px 0}.section-title h2{margin:0;font-size:22px}.count{color:#7f8a9d;font-size:13px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;padding-bottom:35px}
-.card{background:linear-gradient(145deg,#0e131b,#0a0d13);border:1px solid #202734;border-radius:18px;padding:18px;transition:.2s;cursor:pointer}.card:hover{transform:translateY(-3px);border-color:#3a4353}
-.top{display:flex;gap:13px;align-items:center}.icon{width:58px;height:58px;border-radius:15px;display:grid;place-items:center;background:#171d27;border:1px solid #2b3442;font-weight:900;font-size:21px}.meta{flex:1}.meta h3{margin:0 0 5px;font-size:17px}.meta small{color:#8e99aa}.desc{color:#9ca7b8;font-size:13px;line-height:1.5;margin:15px 0;min-height:39px}.chips{display:flex;gap:7px;flex-wrap:wrap}.chip{font-size:11px;color:#b6c0cf;background:#151b24;border:1px solid #252e3a;padding:5px 8px;border-radius:7px}.btn{display:block;text-align:center;margin-top:14px;padding:11px;border-radius:11px;background:#171d27;border:1px solid #2a3340;font-size:13px;font-weight:700}.btn:hover{background:#7c5cff;border-color:#7c5cff}
-.notice{background:#0d121a;border:1px solid #242c39;border-radius:16px;padding:16px;color:#9da8b8;font-size:13px;line-height:1.55;margin:10px 0 35px}.notice b{color:#fff}
-footer{border-top:1px solid #1c222d;padding:28px 0 45px;color:#7f8a9d;font-size:12px;text-align:center}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:18px;z-index:50}.modal.show{display:flex}.modalbox{max-width:700px;width:100%;max-height:90vh;overflow:auto;background:#0c1118;border:1px solid #2a3340;border-radius:22px;padding:22px}.close{float:right;border:0;background:#171d27;color:#fff;border-radius:9px;padding:8px 11px;cursor:pointer}.detail-head{display:flex;gap:15px;align-items:center;margin-bottom:18px}.detail-icon{width:72px;height:72px;border-radius:18px;display:grid;place-items:center;background:#171d27;border:1px solid #2b3442;font-size:27px;font-weight:900}.modalbox p{color:#aeb7c6;line-height:1.6;font-size:14px}.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:15px 0}.shot{height:120px;border-radius:12px;border:1px dashed #394454;background:#121823;display:grid;place-items:center;color:#667285;font-size:11px;text-align:center;padding:8px}.detailbtn{display:block;text-align:center;background:#7c5cff;color:#fff;padding:13px;border-radius:12px;font-weight:800;margin-top:15px}
-@media(max-width:650px){.navlinks{gap:10px;font-size:12px}.hero{padding-top:38px}.shots{grid-template-columns:1fr 1fr}.shot{height:100px}}
-</style>
-</head>
-<body>
-<header><div class="wrap nav"><div class="brand">For <span>The People</span></div><div class="navlinks"><a href="#apps">Apps</a><a href="#about">About</a></div></div></header>
-
-<main class="wrap">
-<section class="hero">
-<div class="tag">📱 Useful apps • websites • resources</div>
-<h1>Useful Apps, <span class="grad">All in One Place.</span></h1>
-<p>Discover popular apps and helpful websites with quick access to their official sources.</p>
-<div class="search"><input id="search" placeholder="Search apps or categories..." oninput="render()"><button onclick="document.getElementById('search').focus()">Search</button></div>
-</section>
-
-<div class="categories">
-<button class="cat active" onclick="setCat('All',this)">All</button>
-<button class="cat" onclick="setCat('Editing',this)">Editing</button>
-<button class="cat" onclick="setCat('Social',this)">Social</button>
-<button class="cat" onclick="setCat('Entertainment',this)">Entertainment</button>
-<button class="cat" onclick="setCat('Games',this)">Games</button>
-<button class="cat" onclick="setCat('Education',this)">Education</button>
-<button class="cat" onclick="setCat('Jobs',this)">Jobs</button>
-<button class="cat" onclick="setCat('Video',this)">Video</button>
-</div>
-
-<section id="apps">
-<div class="section-title"><h2>Featured Apps & Websites</h2><span class="count" id="count"></span></div>
-<div class="grid" id="grid"></div>
-</section>
-
-<div class="notice"><b>🔒 Safe & official:</b> For The People does not host cracked, modified or unauthorized premium APKs. Buttons take you to official app stores or official websites. Paid features remain subject to the service's own plans.</div>
-</main>
-
-<footer id="about"><div class="wrap">© 2026 For The People • Useful resources, in one place.</div></footer>
-
-<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
-<div class="modalbox">
-<button class="close" onclick="closeModal()">✕</button>
-<div id="detail"></div>
-</div>
-</div>
-
+<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>For The People</title><style>
+body{margin:0;background:#070b14;color:#fff;font-family:system-ui}header{padding:18px;border-bottom:1px solid #1d2a40;position:sticky;top:0;background:#070b14ee}.nav,main{max-width:1100px;margin:auto}.nav{display:flex;align-items:center;gap:18px}.brand{font-weight:900;font-size:20px}.brand span{color:#49a0ff}nav{margin-left:auto}nav a{color:#9aa8bd;margin:8px;text-decoration:none;font-size:13px}input{background:#101827;border:1px solid #263750;color:#fff;border-radius:10px;padding:10px}.hero{padding:65px 0 35px}.hero h1{font-size:clamp(40px,7vw,70px);line-height:1;margin:0}.hero span{color:#49a0ff}.hero p{color:#9aa8bd;max-width:650px;line-height:1.6}.features,.grid,.cats{display:grid;gap:12px}.features{grid-template-columns:repeat(4,1fr)}.features div,.card,.cat{background:#101827;border:1px solid #1d2a40;border-radius:16px;padding:16px}.features small{display:block;color:#8f9db2;margin-top:5px}.cats{grid-template-columns:repeat(7,1fr)}.cat{color:#fff}.grid{grid-template-columns:repeat(5,1fr)}.card{position:relative}.logo{width:58px;height:58px;background:#fff;color:#111;border-radius:15px;display:grid;place-items:center;font-weight:900}.badge{position:absolute;right:10px;top:10px;background:#35d07f;color:#06150d;padding:4px 7px;border-radius:20px;font-size:9px}.card h3{margin:13px 0 6px}.pill{background:#17263e;color:#8ec2ff;padding:5px 8px;border-radius:20px;font-size:10px}.card p{color:#8f9db2;font-size:12px;min-height:42px}.btn{display:block;background:#2777ee;color:#fff;text-align:center;padding:10px;border-radius:10px;text-decoration:none;font-size:12px;font-weight:800}.telegram{margin:45px 0;padding:22px;border:1px solid #1d5ebd;border-radius:20px;background:#0d2240}@media(max-width:800px){.grid{grid-template-columns:repeat(3,1fr)}.features{grid-template-columns:repeat(2,1fr)}.cats{grid-template-columns:repeat(4,1fr)}}@media(max-width:550px){nav{display:none}.grid{grid-template-columns:repeat(2,1fr)}.cats{grid-template-columns:repeat(3,1fr)}}
+</style></head><body><header><div class="nav"><div class="brand">👥 For The <span>People</span></div><nav><a href="#home">Home</a><a href="#apps">Apps</a><a href="#categories">Categories</a><a href="#about">About</a></nav><input id="search" placeholder="Search apps..."></div></header><main>
+<section id="home" class="hero"><h1>Welcome to<br><span>For The People</span></h1><p>Useful apps, tools and resources — all in one place. Simple, safe and mobile friendly.</p><div class="features"><div>🛡️ <b>Safe & Trusted</b><small>Official sources</small></div><div>⚡ <b>Fast Access</b><small>No hassle</small></div><div>📱 <b>Mobile Friendly</b><small>Any device</small></div><div>❤️ <b>For Everyone</b><small>Students & creators</small></div></div></section>
+<section id="categories"><h2>Browse by Category</h2><div id="cats" class="cats"></div></section><section id="apps"><h2>🔥 Popular Apps</h2><div id="grid" class="grid"></div></section>
+<div class="telegram">✈️ <b>Join Our Telegram Channel</b><p style="color:#9aa8bd">Get latest updates and useful resources.</p><a class="btn" href="#">Join Now →</a></div><section id="about"><h2>About</h2><p style="color:#9aa8bd">We link to official app stores and official websites. No cracked or unauthorized APKs.</p></section></main>
 <script>
-const apps=[
-{name:"CapCut",cat:"Editing",icon:"CC",desc:"Popular video editor for creating short videos and social content.",tags:["Video Editor","Popular"],url:"https://play.google.com/store/apps/details/CapCut?hl=en_IN&id=com.lemon.lvoverseas"},
-{name:"Instagram",cat:"Social",icon:"IG",desc:"Share photos, videos, stories and connect with people.",tags:["Social","Reels"],url:"https://play.google.com/store/apps/details?id=com.instagram.android"},
-{name:"VN Video Editor",cat:"Editing",icon:"VN",desc:"Powerful video editing tools with a clean creator-focused workflow.",tags:["Editing","Creator"],url:"https://play.google.com/store/apps/details?id=com.frontrow.vlog"},
-{name:"Netflix",cat:"Entertainment",icon:"N",desc:"Watch movies, series and other entertainment through the official service.",tags:["Movies","Series"],url:"https://play.google.com/store/apps/details?id=com.netflix.mediaclient"},
-{name:"BGMI",cat:"Games",icon:"BG",desc:"Battle royale game for Android players in India.",tags:["Game","Battle Royale"],url:"https://play.google.com/store/apps/details?id=com.pubg.imobile"},
-{name:"JioHotstar",cat:"Entertainment",icon:"JH",desc:"Entertainment, sports and shows available through the official app.",tags:["Shows","Sports"],url:"https://play.google.com/store/apps/details?id=in.startv.hotstar"},
-{name:"InShot",cat:"Editing",icon:"IS",desc:"Easy-to-use video and photo editing app for mobile creators.",tags:["Editor","Photos"],url:"https://play.google.com/store/apps/details?gl=IN&hl=en-GB&id=com.camerasideas.instashot"},
-{name:"Sarkari Result",cat:"Jobs",icon:"SR",desc:"Helpful portal for government job, exam and result information.",tags:["Jobs","Results"],url:"https://www.sarkariresult.com/"},
-{name:"Rojgar With Ankit",cat:"Education",icon:"RA",desc:"Learning and exam-preparation resources for students and job aspirants.",tags:["Study","Exams"],url:"https://www.rojgarwithankit.com/"},
-{name:"YouTube",cat:"Video",icon:"YT",desc:"Watch, create and share videos from the official YouTube platform.",tags:["Video","Creators"],url:"https://play.google.com/store/apps/details?gl=IN&hl=en_IN&id=com.google.android.youtube"}
-];
-let active="All";
-function setCat(c,el){active=c;document.querySelectorAll(".cat").forEach(x=>x.classList.remove("active"));el.classList.add("active");render()}
-function render(){
- const q=document.getElementById("search").value.toLowerCase().trim();
- const list=apps.filter(a=>(active==="All"||a.cat===active)&&(!q||(a.name+" "+a.cat+" "+a.desc+" "+a.tags.join(" ")).toLowerCase().includes(q)));
- document.getElementById("count").textContent=list.length+" available";
- document.getElementById("grid").innerHTML=list.map((a,i)=>`<article class="card" onclick="openModal(${apps.indexOf(a)})"><div class="top"><div class="icon">${a.icon}</div><div class="meta"><h3>${a.name}</h3><small>${a.cat}</small></div></div><div class="desc">${a.desc}</div><div class="chips">${a.tags.map(t=>`<span class="chip">${t}</span>`).join("")}</div><a class="btn" href="${a.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Official Source ↗</a></article>`).join("")||'<div class="notice">No matching app found. Try another search.</div>';
-}
-function openModal(i){
- const a=apps[i];
- document.getElementById("detail").innerHTML=`<div class="detail-head"><div class="detail-icon">${a.icon}</div><div><h2 style="margin:0 0 6px">${a.name}</h2><span style="color:#8e99aa">${a.cat}</span></div></div><p>${a.desc}</p><h3>Preview</h3><div class="shots"><div class="shot">App screenshot<br>can be added</div><div class="shot">Feature preview<br>can be added</div><div class="shot">More screenshots<br>can be added</div></div><p><b style="color:#fff">Source:</b> Official app store / website</p><a class="detailbtn" href="${a.url}" target="_blank" rel="noopener">Open Official Source ↗</a>`;
- document.getElementById("modal").classList.add("show");
-}
-function closeModal(){document.getElementById("modal").classList.remove("show")}
-render();
-</script>
-</body>
-</html>
+let d=JSON.parse(localStorage.getItem("ftpData")||"null")||{categories:["Video Editing","Social","Games","Entertainment","Education","Tools","More"],apps:[
+["CapCut","Video Editing","Video editing tools","https://play.google.com/store/apps/details?id=com.lemon.lvoverseas","CC"],["Instagram","Social","Share photos and videos","https://play.google.com/store/apps/details?id=com.instagram.android","IG"],["VN Video Editor","Video Editing","Advanced video editor","https://play.google.com/store/apps/details?id=com.frontrow.vlog","VN"],["Netflix","Entertainment","Movies and series","https://play.google.com/store/apps/details?id=com.netflix.mediaclient","N"],["BGMI","Games","Mobile battle royale","https://play.google.com/store/apps/details?id=com.pubg.imobile","BG"],["JioHotstar","Entertainment","Sports, movies and shows","https://play.google.com/store/apps/details?id=in.startv.hotstar","JH"],["InShot","Video Editing","Photo and video editor","https://play.google.com/store/apps/details?id=com.camerasideas.instashot","IS"],["Sarkari Result","Education","Jobs and results","https://www.sarkariresult.com/","SR"],["Rojgar With Ankit","Education","Exam preparation","https://www.rojgarwithankit.com/","RWA"],["YouTube","Video","Watch and share videos","https://play.google.com/store/apps/details?id=com.google.android.youtube","YT"]]};
+function render(q="",c=""){grid.innerHTML=d.apps.filter(a=>(!q||a[0].toLowerCase().includes(q.toLowerCase()))&&(!c||a[1]==c)).map(a=>`<article class=card><b class=badge>Official</b><div class=logo>${a[4]}</div><h3>${a[0]}</h3><span class=pill>${a[1]}</span><p>${a[2]}</p><a class=btn href="${a[3]}" target=_blank>Official Download →</a></article>`).join("")}cats.innerHTML=d.categories.map(c=>`<button class=cat onclick="render('','${c}')">◈<br>${c}</button>`).join("");search.oninput=()=>render(search.value);render();
+</script></body></html>
