@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Sitemap: https://gyroxpro200-sketch.github.io/For-the-people/sitemap.xml
