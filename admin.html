@@ -23,7 +23,16 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import {getDatabase,ref,onValue,set,push,remove,update} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
-const firebaseConfig="const firebaseConfig = {\n  apiKey: \"AIzaSyBNS52LiR27R8xlJZU34F5QGzt7X5JovKU\",\n  authDomain: \"for-the-people-f0873.firebaseapp.com\",\n  databaseURL: \"https://for-the-people-f0873-default-rtdb.firebaseio.com\",\n  projectId: \"for-the-people-f0873\",\n  storageBucket: \"for-the-people-f0873.firebasestorage.app\",\n  messagingSenderId: \"1062809074315\",\n  appId: \"1:1062809074315:web:13136bd28328c2c12df28e\",\n  measurementId: \"G-WHWBFMQ21F\"\n};";
+const firebaseConfig = {
+  apiKey: "AIzaSyBNS52LiR27R8xlJZU34F5QGzt7X5JovKU",
+  authDomain: "for-the-people-f0873.firebaseapp.com",
+  databaseURL: "https://for-the-people-f0873-default-rtdb.firebaseio.com",
+  projectId: "for-the-people-f0873",
+  storageBucket: "for-the-people-f0873.firebasestorage.app",
+  messagingSenderId: "1062809074315",
+  appId: "1:1062809074315:web:13136bd28328c2c12df28e",
+  measurementId: "G-WHWBFMQ21F"
+};
 const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getDatabase(app);
 const $=id=>document.getElementById(id); let apps={}, cats=[];
 const defaults=[["CapCut", "Video Editing", "Video editor & creator tools", "https://play.google.com/store/apps/details/CapCut?hl=en_IN&id=com.lemon.lvoverseas", "CC"], ["Instagram", "Social", "Share photos and videos", "https://play.google.com/store/apps/details?id=com.instagram.android", "IG"], ["VN Video Editor", "Video Editing", "Advanced video editor", "https://play.google.com/store/apps/details?id=com.frontrow.vlog", "VN"], ["Netflix", "Entertainment", "Movies and series", "https://play.google.com/store/apps/details?id=com.netflix.mediaclient", "N"], ["BGMI", "Games", "Mobile battle royale", "https://play.google.com/store/apps/details?id=com.pubg.imobile", "BG"], ["JioHotstar", "Entertainment", "Sports, movies and shows", "https://play.google.com/store/apps/details?id=in.startv.hotstar", "JH"], ["InShot", "Video Editing", "Photo and video editor", "https://play.google.com/store/apps/details?gl=IN&hl=en-GB&id=com.camerasideas.instashot", "IS"], ["Sarkari Result", "Education", "Jobs and exam results", "https://www.sarkariresult.com/", "SR"], ["Rojgar With Ankit", "Education", "Exam preparation", "https://www.rojgarwithankit.com/", "RA"], ["YouTube", "Video", "Watch and share videos", "https://play.google.com/store/apps/details?gl=IN&hl=en_IN&id=com.google.android.youtube", "YT"]];
