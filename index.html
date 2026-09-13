@@ -34,7 +34,18 @@ const grid=document.getElementById("grid"), chips=document.getElementById("chips
 function renderChips(){chips.innerHTML=categories.map(c=>`<button class="chip ${c===active?'active':''}" data-c="${c}">${c}</button>`).join(""); chips.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{active=b.dataset.c;render()})}
 function render(){renderChips(); const q=search.value.toLowerCase().trim(); const list=data.filter(a=>(active==="All"||a.category===active)&&(!q||a.name.toLowerCase().includes(q)||a.description.toLowerCase().includes(q))); grid.innerHTML=list.length?list.map(a=>`<article class="card"><div class="logo">${a.logoText||a.name.slice(0,2).toUpperCase()}</div><div class="cat">${a.category}</div><h3>${a.name}</h3><p>${a.description}</p><a class="btn" href="${a.url}" target="_blank" rel="noopener">Official Download ↗</a><div class="official">✓ Official link</div></article>`).join(""):`<div class="empty">No apps found.</div>`}
 search.addEventListener("input",render);
-onValue(ref(db,"apps"),s=>{try{const v=s.val(); const arr=v?Object.values(v).filter(a=>a&&a.name&&a.url):[]; if(arr.length) data=arr; render()}catch(e){console.error(e);render()}},e=>{console.error(e);render()});
+function normalizeApp(a){
+  if(Array.isArray(a)) return {name:a[0]||"",category:a[1]||"",description:a[2]||"",url:a[3]||"",logoText:a[4]||""};
+  return a||{};
+}
+onValue(ref(db,"apps"),s=>{
+  try{
+    const v=s.val();
+    const arr=v?Object.values(v).map(normalizeApp).filter(a=>a.name&&a.url):[];
+    if(arr.length) data=arr;
+    render();
+  }catch(e){console.error(e);render()}
+},e=>{console.error(e);render()});
 onValue(ref(db,"categories"),s=>{const v=s.val(); if(Array.isArray(v)) categories=v; else if(v) categories=Object.values(v); render()},()=>render());
 render();
 </script></body></html>

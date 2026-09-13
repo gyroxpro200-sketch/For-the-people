@@ -36,11 +36,36 @@ const firebaseConfig = {
 const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getDatabase(app);
 const $=id=>document.getElementById(id); let apps={}, cats=[];
 const defaults=[["CapCut", "Video Editing", "Video editor & creator tools", "https://play.google.com/store/apps/details/CapCut?hl=en_IN&id=com.lemon.lvoverseas", "CC"], ["Instagram", "Social", "Share photos and videos", "https://play.google.com/store/apps/details?id=com.instagram.android", "IG"], ["VN Video Editor", "Video Editing", "Advanced video editor", "https://play.google.com/store/apps/details?id=com.frontrow.vlog", "VN"], ["Netflix", "Entertainment", "Movies and series", "https://play.google.com/store/apps/details?id=com.netflix.mediaclient", "N"], ["BGMI", "Games", "Mobile battle royale", "https://play.google.com/store/apps/details?id=com.pubg.imobile", "BG"], ["JioHotstar", "Entertainment", "Sports, movies and shows", "https://play.google.com/store/apps/details?id=in.startv.hotstar", "JH"], ["InShot", "Video Editing", "Photo and video editor", "https://play.google.com/store/apps/details?gl=IN&hl=en-GB&id=com.camerasideas.instashot", "IS"], ["Sarkari Result", "Education", "Jobs and exam results", "https://www.sarkariresult.com/", "SR"], ["Rojgar With Ankit", "Education", "Exam preparation", "https://www.rojgarwithankit.com/", "RA"], ["YouTube", "Video", "Watch and share videos", "https://play.google.com/store/apps/details?gl=IN&hl=en_IN&id=com.google.android.youtube", "YT"]];
-function seedIfEmpty(){onValue(ref(db,"apps"),s=>{if(!s.exists()){const obj={}; defaults.forEach((a,i)=>obj["app"+(i+1)]=a); set(ref(db,"apps"),obj)}},{onlyOnce:true});}
+function toApp(a){
+  if(Array.isArray(a)) return {name:a[0]||"",category:a[1]||"",description:a[2]||"",url:a[3]||"",logoText:a[4]||""};
+  return a||{};
+}
+function seedIfEmpty(){
+  onValue(ref(db,"apps"),s=>{
+    const v=s.val();
+    if(!s.exists()){
+      const obj={};
+      defaults.forEach((a,i)=>obj["app"+(i+1)]=toApp(a));
+      set(ref(db,"apps"),obj);
+    }else if(v && typeof v==="object"){
+      const obj={}; let changed=false;
+      Object.entries(v).forEach(([id,a])=>{const n=toApp(a); obj[id]=n; if(Array.isArray(a)) changed=true;});
+      if(changed) set(ref(db,"apps"),obj);
+    }
+  },{onlyOnce:true});
+}
 onAuthStateChanged(auth,u=>{if(u){$("login").classList.add("hidden");$("app").classList.remove("hidden");$("user").textContent="Signed in as "+u.email;seedIfEmpty();load();}else{$("login").classList.remove("hidden");$("app").classList.add("hidden")}});
 $("loginBtn").onclick=async()=>{try{await signInWithEmailAndPassword(auth,$("email").value.trim(),$("pass").value)}catch(e){$("loginMsg").textContent=e.message}};
 $("logout").onclick=()=>signOut(auth); $("siteBtn").onclick=()=>location.href="./";
-function load(){onValue(ref(db,"apps"),s=>{apps=s.val()||{};render()});onValue(ref(db,"categories"),s=>{const v=s.val();cats=Array.isArray(v)?v:(v?Object.values(v):["All","Video Editing","Social","Games","Entertainment","Education","Video","Tools","More"]);$("cats").value=cats.filter(x=>x!=="All").join(", ");render()})}
+function load(){
+  onValue(ref(db,"apps"),s=>{
+    const v=s.val()||{};
+    apps={};
+    Object.entries(v).forEach(([id,a])=>apps[id]=toApp(a));
+    render();
+  });
+  onValue(ref(db,"categories"),s=>{const v=s.val();cats=Array.isArray(v)?v:(v?Object.values(v):["All","Video Editing","Social","Games","Entertainment","Education","Video","Tools","More"]);$("cats").value=cats.filter(x=>x!=="All").join(", ");render()})
+}
 function render(){const arr=Object.entries(apps);$("count").textContent=arr.length;$("catCount").textContent=cats.length?cats.filter(x=>x!=="All").length:0;const q=$("filter").value.toLowerCase();$("tbody").innerHTML=arr.filter(([id,a])=>(a.name||"").toLowerCase().includes(q)).map(([id,a])=>`<tr><td><b>${a.name}</b><br><span class="muted">${a.description||""}</span></td><td>${a.category||""}</td><td class="actions"><button data-edit="${id}">Edit</button><button class="danger" data-del="${id}">Delete</button></td></tr>`).join("");document.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>edit(b.dataset.edit));document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>del(b.dataset.del))}
 $("filter").oninput=render;
 function clearForm(){["editId","name","category","description","url","logoText"].forEach(x=>$(x).value="");$("msg").textContent=""}
